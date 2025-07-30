@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+	<form-beans>
+		<form-bean name="profile" type="com.dts.dae.model.Profile" />
+		<form-bean name="criminalmasterform"
+			type="com.dts.ManagePrison.model.CriminalMasterForm" />
+		<form-bean name="criminalCaseRegisterForm"
+			type="com.dts.ManagePrison.model.CriminalCaseRegisterForm" />
+		<form-bean name="criminalCourtMasterForm"
+			type="com.dts.ManagePrison.model.CriminalCourtMasterForm" />
+		<form-bean name="criminalDutyMaster"
+			type="com.dts.ManagePrison.model.CriminalDutyMasterForm" />
+		<form-bean name="criminaldutyregister"
+			type="com.dts.ManagePrison.model.CriminalDutyDetails" />
+		<form-bean name="criminalArticlesMasterForm"
+			type="com.dts.ManagePrison.model.CriminalArticlesMasterForm" />
+		<form-bean name="nominalRoleMasterForm"
+			type="com.dts.ManagePrison.model.NominalRoleMasterForm" />
+		<form-bean name="releasedCriminalsForm"
+			type="com.dts.ManagePrison.model.ReleasedCriminalsForm" />
+		<form-bean name="employeDutyMasterForm"
+			type="com.dts.ManagePrison.model.EmployeDutyMasterForm" />
+		<form-bean name="employeDutyDetailsForm"
+			type="com.dts.ManagePrison.model.EmployeDutyDetailsForm" />
+		<form-bean name="paroleform" type="com.dts.ManagePrison.model.ParolForm" />
+		<form-bean name="criminalmovementmasterform"
+			type="com.dts.ManagePrison.model.CriminalMovementMasterForm" />
+
+	</form-beans>
+
+
+
+	<global-exceptions>
+
+	</global-exceptions>
+
+	<global-forwards>
+
+	</global-forwards>
+
+	<action-mappings>
+		<action attribute="profile" name="profile" path="/registerAction"
+			scope="request" type="com.dts.project.action.RegisterAction"
+			validate="false">
+			<forward name="registerSuccess" path="/Success.jsp?status=Registeration Success" />
+			<forward name="registerFail" path="/Success.jsp?status=Registeration Fail" />
+		</action>
+		<action attribute="profile" name="profile" path="/customerregisterAction"
+			scope="request" type="com.dts.project.action.RegisterAction"
+			validate="false">
+			<forward name="registerSuccess"
+				path="/Success.jsp?status=Employee Registration Success" />
+			<forward name="registerFail"
+				path="/Success.jsp?status=Employee Registration Fail" />
+		</action>
+		<action path="/loginAction" type="com.dts.project.action.LoginAction"
+			validate="false">
+			<forward name="admin" path="/AdminHome.jsp" />
+			<forward name="Employee" path="/EmployeeHome.jsp" />
+				<forward name="Customer" path="/CustomerHome.jsp" />
+			<forward name="invalid"
+				path="/LoginForm.jsp?status=Invalid Username and Password" />
+		</action>
+
+		<action path="/viewEmployeeAction" type="com.dts.project.action.ViewEmployeeAction"
+			validate="false">
+			<forward name="ViewEmployees" path="/ViewEmployees.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+
+		</action>
+
+		<action path="/employeeProfile" type="com.dts.project.action.EmployeeProfile"
+			validate="false">
+			<forward name="ViewProfile" path="/EmployeeProfile.jsp" />
+		</action>
+		<action path="/employeeUpdateProfile" type="com.dts.project.action.EmployeeUpdateProfile"
+			name="profile">
+			<forward name="success"
+				path="/employeeProfile.do?status=Employee Details Updated Successfully" />
+			<forward name="fail"
+				path="/employeeProfile.do?status=Employee Details Updated Failed" />
+		</action>
+		<action path="/adminProfile" type="com.dts.project.action.EmployeeProfile"
+			validate="false">
+			<forward name="ViewProfile" path="/AdminProfile.jsp" />
+		</action>
+		<action path="/adminUpdateProfile" type="com.dts.project.action.EmployeeUpdateProfile"
+			name="profile">
+			<forward name="success"
+				path="/Success.jsp?status=Admin Details Updated Successfully" />
+			<forward name="fail"
+				path="/Success.jsp?status=Admin Details Updated Failed" />
+		</action>
+
+		<action path="/customerProfile" type="com.dts.project.action.EmployeeProfile"
+			validate="false">
+			<forward name="ViewProfile" path="/CustomerProfile.jsp" />
+		</action>
+		<action path="/customerUpdateProfile" type="com.dts.project.action.EmployeeUpdateProfile"
+			name="profile">
+			<forward name="success"
+				path="/Success2.jsp?status=Employee Details Updated Successfully" />
+			<forward name="fail"
+				path="/Success2.jsp?status=Employee Details Updated Failed" />
+		</action>
+
+
+
+		<action path="/customerChangePassword" type="com.dts.project.action.ChangePassword"
+			validate="false">
+			<forward name="success"
+				path="/Success2.jsp?status=Password Changed Successfully" />
+			<forward name="fail" path="/Success2.jsp?status=Password Change Failed" />
+
+		</action>
+		<action path="/adminChangePassword" type="com.dts.project.action.ChangePassword"
+			validate="false">
+			<forward name="success"
+				path="/Success.jsp?status=Password Changed Successfully" />
+			<forward name="fail" path="/Success.jsp?status=Password Change Failed" />
+
+		</action>
+		<action path="/employeeChangePassword" type="com.dts.project.action.ChangePassword"
+			validate="false">
+			<forward name="success"
+				path="/Success1.jsp?status=Password Changed Successfully" />
+			<forward name="fail" path="/Success1.jsp?status=Password Change Failed" />
+
+		</action>
+		<action path="/criminalRegisterAction" type="com.dts.project.action.CriminalRegisterAction"
+			name="criminalmasterform">
+			<forward name="success" path="/CriminalCaseRegisterForm.jsp" />
+			<forward name="fail"
+				path="/Success1.jsp?status=Criminal Registration Fail" />
+		</action>
+		<action attribute="criminalCaseRegisterForm" name="criminalCaseRegisterForm"
+			path="/criminalCaseRegisterAction" scope="request"
+			type="com.dts.project.action.CriminalCaseRegisterAction" validate="false">
+			<forward name="success"
+				path="/Success1.jsp?status=Criminal Details Registred Successfully" />
+			<forward name="fail"
+				path="/Success1.jsp?status=Criminal Registration Fail" />
+		</action>
+		<action attribute="criminalmasterform" name="criminalmasterform"
+			path="/viewCriminalsAction" scope="request"
+			type="com.dts.project.action.ViewCriminalAction">
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+			<forward name="ViewCriminals" path="/ViewCriminals.jsp" />
+		</action>
+		<action attribute="criminalmasterform" name="criminalmasterform"
+			path="/updateCriminalAction" scope="request"
+			type="com.dts.project.action.UpdateCriminalAction" validate="false">
+			<forward name="success"
+				path="/viewCriminalsAction.do?status=Criminal Details Updated Successfully" />
+			<forward name="fail"
+				path="/viewCriminalsAction.do?status=Criminal Details Updation Fail" />
+
+		</action>
+		<action attribute="criminalCaseRegisterForm" name="criminalCaseRegisterForm"
+			path="/viewCriminalCaseRegister" scope="request"
+			type="com.dts.project.action.ViewCriminalCaseRegister" validate="false">
+			<forward name="ViewCriminalCaseRegister" path="/ViewCriminalCaseRegister.jsp" />
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+		</action>
+		<action attribute="criminalCaseRegisterForm" name="criminalCaseRegisterForm"
+			path="/updateCrimnalCaseRegisterDetails" scope="request"
+			type="com.dts.project.action.UpdateCriminalCaseRegister">
+			<forward name="success"
+				path="/viewCriminalCaseRegister.do?status=Case Register  Details Updated" />
+			<forward name="fail"
+				path="/viewCriminalCaseRegister.do?status=CaseDetails Updation Fail" />
+		</action>
+		<action attribute="criminalCourtMasterForm" name="criminalCourtMasterForm"
+			path="/criminalCourtAction" scope="request"
+			type="com.dts.project.action.CriminalCourtAction">
+			<forward name="success"
+				path="/Success1.jsp?status=Criminal Court Details Registration Successfully" />
+			<forward name="fail"
+				path="/Success1.jsp?status=Criminal Court Details Registration Failed" />
+		</action>
+		<action path="/viewHearingDetails" type="com.dts.project.action.ViewHearingDetails">
+			<forward name="ViewHearingdetails" path="/ViewHearingDetails.jsp" />
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+
+		</action>
+		<action path="/criminalDutyAction" type="com.dts.project.action.CriminalDutyAction"
+			name="criminalDutyMaster">
+			<forward name="success"
+				path="/Success1.jsp?status=Criminal Duty Assigned Successfully" />
+			<forward name="fail"
+				path="/Success1.jsp?status=Criminal Duty Assigned Failed" />
+
+		</action>
+		<action attribute="criminalDutyMaster" name="criminalDutyMaster"
+			path="/viewCriminalDutyAction" scope="request"
+			type="com.dts.project.action.ViewCriminalDutyAction">
+			<forward name="ViewCrimnalDutys" path="/ViewCriminalDutys.jsp" />
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+
+		</action>
+
+		<action attribute="criminalmasterform" name="criminalmasterform"
+			path="/viewAdminCriminalsAction" scope="request"
+			type="com.dts.project.action.ViewCriminalAction">
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+			<forward name="ViewCriminals" path="/AdminViewCriminals.jsp" />
+		</action>
+		<action attribute="criminalCaseRegisterForm" name="criminalCaseRegisterForm"
+			path="/viewAdminCriminalCaseRegister" scope="request"
+			type="com.dts.project.action.ViewCriminalCaseRegister" validate="false">
+			<forward name="ViewCriminalCaseRegister" path="/ViewAdminCriminalCaseRegister.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+		</action>
+
+		<action path="/viewAdminHearingDetails" type="com.dts.project.action.ViewHearingDetails">
+			<forward name="ViewHearingdetails" path="/AdminViewHearingDetails.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+
+		</action>
+		<action attribute="criminalDutyMaster" name="criminalDutyMaster"
+			path="/viewAdminCriminalDutyAction" scope="request"
+			type="com.dts.project.action.ViewCriminalDutyAction">
+			<forward name="ViewCrimnalDutys" path="/AdminViewCriminalDutys.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+
+		</action>
+		<action path="/criminalArticalAction" type="com.dts.project.action.CriminalArticalAction"
+			name="criminalArticlesMasterForm">
+			<forward name="success"
+				path="/Success.jsp?status=Article Registred Successfully" />
+			<forward name="fail" path="/Success.jsp?status=Article Registred Failed" />
+
+		</action>
+		<action path="/viewCriminalArticleAction" type="com.dts.project.action.ViewCriminalArticleAction"
+			validate="false">
+			<forward name="viewArticlemaster" path="/ViewCriminalArticle.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+
+		</action>
+		<action path="/nominalRegisterAction" type="com.dts.project.action.NominalRollAction"
+			name="nominalRoleMasterForm">
+			<forward name="success"
+				path="/Success1.jsp?status=Record Registred Successfully" />
+			<forward name="fail" path="/Success1.jsp?status=Record Registred Failed" />
+		</action>
+		<action attribute="nominalRoleMasterForm" name="nominalRoleMasterForm"
+			path="/viewNominalRollAction" scope="request"
+			type="com.dts.project.action.ViewNominalRollAction">
+			<forward name="norecords" path="/Success1.jsp?status=no Records Found" />
+			<forward name="ViewNominalRolls" path="/ViewNominalRolls.jsp" />
+		</action>
+
+		<action attribute="nominalRoleMasterForm" name="nominalRoleMasterForm"
+			path="/viewAdminNominalRollAction" scope="request"
+			type="com.dts.project.action.ViewNominalRollAction">
+			<forward name="norecords" path="/Success.jsp?status=no Records Found" />
+			<forward name="ViewNominalRolls" path="/AdminViewNominalRolls.jsp" />
+		</action>
+		<action path="/releaseCriminalAction" type="com.dts.project.action.ReleaseCriminalAction"
+			validate="false" name="releasedCriminalsForm">
+			<forward name="success"
+				path="/Success.jsp?status=Criminal Release Data Stored Successfully" />
+			<forward name="fail"
+				path="/Success.jsp?status=Criminal Release Data Stored Failed" />
+		</action>
+		<action attribute="releasedCriminalsForm" name="releasedCriminalsForm"
+			path="/viewCriminalreleasAction" scope="request"
+			type="com.dts.project.action.ViewCriminalReleaseAction" validate="false">
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+			<forward name="viewCriminalRelease" path="/ViewReleaseCriminalRegister.jsp" />
+		</action>
+		<action attribute="releasedCriminalsForm" name="releasedCriminalsForm"
+			path="/updateCriminalReleaseAction" scope="request"
+			type="com.dts.project.action.UpdateCriminalReleaseMaster" validate="false">
+			<forward name="success" path="/Success.jsp?status=Updation Success" />
+			<forward name="fail" path="/Success.jsp?status=Updation Failed" />
+		</action>
+		<action attribute="employeDutyMasterForm" name="employeDutyMasterForm"
+			path="/employeeDutyAction" scope="request"
+			type="com.dts.project.action.EmployeeDutyAction" validate="false">
+			<forward name="success"
+				path="/Success.jsp?status=Employee Details Registred Successfully" />
+			<forward name="fail"
+				path="/Success.jsp?status=Employee Details Registred Failed" />
+		</action>
+		<action attribute="employeDutyMasterForm" name="employeDutyMasterForm"
+			path="/viewEmployeeDutyAction" scope="request"
+			type="com.dts.project.action.ViewEmployeeDutyAction">
+			<forward name="viewEmployeeDutys" path="/ViewEmployeeDutys.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records found" />
+		</action>
+		<action attribute="paroleform" name="paroleform" path="/paroleAction"
+			scope="request" type="com.dts.project.action.ParoleAction">
+			<forward name="success"
+				path="/Success.jsp?status=Parole Registred Successfully" />
+			<forward name="fail" path="/Success.jsp?status=Parole Registred Failed" />
+		</action>
+		<action path="/criminalmovementAction" type="com.dts.project.action.CriminalMovementAction"
+			name="criminalmovementmasterform">
+			<forward name="success"
+				path="/Success.jsp?status=Record Inserted Successfully" />
+			<forward name="fail" path="/Success.jsp?status=Record Insertion Fail" />
+		</action>
+		<action attribute="criminalmovementmasterform" name="criminalmovementmasterform"
+			path="/viewCriminalmovementAction" scope="request"
+			type="com.dts.project.action.ViewCriminalMovementAction" validate="false">
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+			<forward name="ViewCriminalMovement" path="/ViewCriminalMovement.jsp" />
+		</action>
+		<action attribute="paroleform" name="paroleform" path="/viewParoleAction"
+			scope="request" type="com.dts.project.action.viewParoleAction">
+			<forward name="ViewParoles" path="/ViewParole.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+		</action>
+
+		<action attribute="paroleform" name="paroleform" path="/viewEmployeeParoleAction"
+			scope="request" type="com.dts.project.action.viewParoleAction">
+			<forward name="ViewParoles" path="/EmployeeViewParole.jsp" />
+			<forward name="norecords" path="/Success.jsp?status=No Records Found" />
+		</action>
+		<action attribute="criminalmovementmasterform" name="criminalmovementmasterform"
+			path="/viewEmployeeCriminalmovementAction" scope="request"
+			type="com.dts.project.action.ViewCriminalMovementAction" validate="false">
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+			<forward name="ViewCriminalMovement" path="/EmployeeViewCriminalMovement.jsp" />
+		</action>
+
+		<action attribute="employeDutyMasterForm" name="employeDutyMasterForm"
+			path="/EmployeeviewEmployeeDutyAction" scope="request"
+			type="com.dts.project.action.ViewEmployeeDutyAction">
+			<forward name="viewEmployeeDutys" path="/EmployeeViewEmployeeDutys.jsp" />
+			<forward name="norecords" path="/Success1.jsp?status=No Records found" />
+		</action>
+		<action attribute="releasedCriminalsForm" name="releasedCriminalsForm"
+			path="/EmployeeviewCriminalreleasAction" scope="request"
+			type="com.dts.project.action.ViewCriminalReleaseAction" validate="false">
+			<forward name="norecords" path="/Success1.jsp?status=No Records Found" />
+			<forward name="viewCriminalRelease" path="/EmployeeViewReleaseCriminalRegister.jsp" />
+		</action>
+	</action-mappings>
+
+	<message-resources parameter="com.yourcompany.struts.ApplicationResources" />
+
+</struts-config>
+
+
+
+
+
