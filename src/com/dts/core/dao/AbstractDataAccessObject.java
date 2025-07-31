@@ -9,7 +9,12 @@ import com.dts.dae.dao.DBConnection;
 
 public class AbstractDataAccessObject {
 
+
+private int count;
 	Connection con;
+	
+	Connection conn1;
+	
 
 	public int getSequenceID(String tableName, String pkid) {
 		int id = 0;
